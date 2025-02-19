@@ -1,0 +1,108 @@
+<?php
+// Menangani data formulir
+$name = $address = $email = $phone = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST["name"]);
+    $address = htmlspecialchars($_POST["address"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $phone = htmlspecialchars($_POST["phone"]);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbankan News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .news-header {
+            color: rgb(241, 249, 250);
+            background-color: rgb(82, 117, 117);
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .news-text {
+            text-align: justify;
+        }
+        .btn-learn {
+            background-color: rgb(255, 150, 13);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-learn:hover {
+            background-color: rgb(230, 120, 10);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-5">
+        <h4 class="news-header">PERBANKAN NEWS</h4>
+
+        <div class="row align-items-center mt-4">
+            <div class="col-lg-6 col-md-12">
+                <h1 class="text-primary">INDUSTRI PERBANKAN DI INDONESIA</h1>
+                <p class="news-text">
+                    Otoritas Jasa Keuangan (OJK) Republik Indonesia melaporkan bahwa kinerja industri perbankan Indonesia selama 2022 tetap terjaga baik dan tumbuh positif, serta mampu menahan tekanan perekonomian global.
+                </p>
+                <button class="btn-learn mt-3">Pelajari lebih lanjut</button>
+            </div>
+
+            <div class="col-lg-6 col-md-12 text-center mt-4 mt-lg-0">
+                <img src="BANK.jpg" alt="Bank" class="img-fluid rounded shadow">
+            </div>
+        </div>
+
+        <!-- Formulir -->
+        <div class="mt-5">
+            <h3>Formulir Pendaftaran</h3>
+            <form method="POST" action="">
+                <div class="mb-3">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Alamat</label>
+                    <input type="text" name="address" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nomor Telepon</label>
+                    <input type="text" name="phone" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+            </form>
+        </div>
+
+        <!-- Menampilkan Data yang Dikirim -->
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST") : ?>
+        <div class="mt-5 p-3 border rounded bg-light">
+            <h4>Data yang Anda Masukkan:</h4>
+            <p><strong>Nama Lengkap:</strong> <?php echo $name; ?></p>
+            <p><strong>Alamat:</strong> <?php echo $address; ?></p>
+            <p><strong>Email:</strong> <?php echo $email; ?></p>
+            <p><strong>Nomor Telepon:</strong> <?php echo $phone; ?></p>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function ubahTeks() {
+            document.getElementById("text-display").innerText = "Selamat Datang";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
